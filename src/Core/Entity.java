@@ -11,9 +11,10 @@ abstract class Entity {
         this.hp = maxHp;
     }
 
-    public void takeDamage(int damage) {
-        this.hp = Math.max(0, this.hp - damage);
-        System.out.println(name + " reçoit " + damage + " dégâts ! Il lui reste " + hp + " PV.");
+    public static void attack(Entity attacker, Entity target) {
+        int damage = 10;
+        target.hp = Math.max(0, target.hp - damage);
+        System.out.println(attacker.name + " attaque " + target.name + " et inflige " + damage + " degats. Il reste " + target.hp + " PV a " + target.name + ".");
     }
 
     public boolean isAlive() {
@@ -23,5 +24,4 @@ abstract class Entity {
     public String getName() {
         return name;
     }
-
 }
