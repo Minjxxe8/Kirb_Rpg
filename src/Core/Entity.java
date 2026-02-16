@@ -24,5 +24,4 @@ abstract class Entity {
         return name;
     }
 
-    public abstract void doAction();
 }
