@@ -6,10 +6,11 @@ abstract class Entity {
     protected int maxHp;
     protected int damage;
 
-    public Entity(String name, int maxHp) {
+    public Entity(String name, int maxHp, int damage) {
         this.name = name;
         this.maxHp = maxHp;
         this.hp = maxHp;
+        this.damage = damage;
     }
 
     public static void attack(Entity attacker, Entity target) {

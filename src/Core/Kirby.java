@@ -8,7 +8,7 @@ class Kirby extends Entity {
     private Power currentPower;
 
     public Kirby() {
-        super("Kirby", MAX_HP);
+        super("Kirby", MAX_HP, 20);
         this.inventory = new Inventory(0, 0);
     }
 
