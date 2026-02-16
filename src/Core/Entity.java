@@ -4,6 +4,7 @@ abstract class Entity {
     protected String name;
     protected int hp;
     protected int maxHp;
+    protected int damage;
 
     public Entity(String name, int maxHp) {
         this.name = name;
@@ -12,9 +13,8 @@ abstract class Entity {
     }
 
     public static void attack(Entity attacker, Entity target) {
-        int damage = 10;
-        target.hp = Math.max(0, target.hp - damage);
-        System.out.println(attacker.name + " attaque " + target.name + " et inflige " + damage + " degats. Il reste " + target.hp + " PV a " + target.name + ".");
+        target.hp = Math.max(0, target.hp - attacker.damage);
+        System.out.println(attacker.name + " attaque " + target.name + " et inflige " + attacker.damage + " degats. Il reste " + target.hp + " PV a " + target.name + ".");
     }
 
     public boolean isAlive() {
