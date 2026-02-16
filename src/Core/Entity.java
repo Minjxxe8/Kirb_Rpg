@@ -13,7 +13,7 @@ abstract class Entity {
 
     public void takeDamage(int damage) {
         this.hp = Math.max(0, this.hp - damage);
-        System.out.println(name + " reçoit " + damage + " dégâts !");
+        System.out.println(name + " reçoit " + damage + " dégâts ! Il lui reste " + hp + " PV.");
     }
 
     public boolean isAlive() {
