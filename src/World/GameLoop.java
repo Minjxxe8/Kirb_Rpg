@@ -23,7 +23,9 @@ public class GameLoop {
         game.start();
     }
     public void start() {
-        printBanner();
+        GameLore lore = new GameLore();
+        System.out.println(lore.getIntroduction());
+
         waitForKey("\n Appuiyé sur entrée pour commencer...");
 
         while(gameRunning && currentWorld <= TOTAL_WORLDS) {
@@ -40,11 +42,6 @@ public class GameLoop {
         scanner.close();
     }
 
-    private void printBanner() {
-        printLine("=", 50);
-        System.out.println("                KIRBY RPG GAME        ");
-        printLine("=", 50);
-    }
 
     private void printLine(String character, int count) {
         for (int i = 0; i < count; i++) {
@@ -59,15 +56,26 @@ public class GameLoop {
     }
 
     private void runWorld(int worldNumber) {
+        GameLore lore = new GameLore();
+        System.out.println(lore.getWorldLore(worldNumber));
+        waitForKey("\nAppuyez sur entrée pour explorer ce monde...");
         System.out.println("\n--- MONDE " + worldNumber + " ---");
         System.out.println("Pouvoir actuel: " + currentPower);
         System.out.println("Or de Kirby: " + kirbyGold);
 
-        currentWorld++;
+        System.out.println("\nCombats en cours...");
 
         System.out.println("\nMonde " + worldNumber + " terminé!");
+
+        if (worldNumber < TOTAL_WORLDS) {
+            Shop shop = new Shop();
+            shop.displayShop();
+        }
+
+        currentWorld++;
         waitForKey("Appuyez sur entrée pour continuer...");
     }
+
 
     private void printVictory() {
         printLine("*", 50);
