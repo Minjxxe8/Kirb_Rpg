@@ -28,7 +28,8 @@ public class GameLoop {
     }
 
     public void start() {
-        System.out.println("\n=== BIENVENUE DANS KIRBY ADVENTURE ===\n");
+        GameLore lore = new GameLore();
+        System.out.println(lore.getIntroduction());
 
         while (gameRunning && currentWorld <= TOTAL_WORLDS) {
             runWorld(currentWorld);
