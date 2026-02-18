@@ -1,5 +1,7 @@
 package Core;
 
+import Powers.PowersEnum;
+
 public class Boss extends Entity {
     private AttackStrategy strategy;
 
@@ -16,4 +18,8 @@ public class Boss extends Entity {
         this.strategy = new HeavyAttack();
     }
 
+    @Override
+    public PowersEnum getPower() {
+        return null;
+    }
 }
