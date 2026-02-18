@@ -1,33 +1,28 @@
 package Powers;
 
-public class NinjaPower extends AbstractPower{
+public class CutterPower extends AbstractPower {
     @Override
     public String getName() {
-        return "Ninja";
+        return "Cutter";
     }
 
     @Override
     public int getDamage() {
-        return 26;
+        return 35;
     }
 
     @Override
     public PowersEnum getType() {
-        return PowersEnum.NINJA;
+        return PowersEnum.CUTTER;
     }
 
     @Override
     public PowersEnum getWeakAgainst() {
-        return PowersEnum.SWORD;
-    }
-
-    @Override
-    public PowersEnum getStrongAgainst() {
         return PowersEnum.ARCHER;
     }
 
     @Override
     public PowersEnum getBetterAgainst() {
-        return PowersEnum.FIRE;
+        return PowersEnum.SPEAR;
     }
 }
