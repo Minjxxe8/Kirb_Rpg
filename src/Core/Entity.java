@@ -37,7 +37,8 @@ public abstract class Entity {
     }
 
     public int takeDamage(int damage) {
-        return this.hp -= damage;
+        this.hp = Math.max(0, this.hp - damage);
+        return this.hp;
     }
 
     public void setHp(int hp) {
@@ -49,5 +50,9 @@ public abstract class Entity {
 
     public int getDamage() {
         return damage;
+    }
+
+    public int getMaxHp() {
+        return maxHp;
     }
 }

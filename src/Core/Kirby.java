@@ -35,7 +35,7 @@ public class Kirby extends Entity {
 
     public void heal() {
         if (inventory.usePotion()) {
-            this.hp = Math.min(maxHp, hp + 40);
+            this.hp = Math.min(maxHp, hp + 100);
             System.out.println("Kirby utilise une potion. PV: " + hp + ". Potions restantes: " + inventory.getPotionCount());
         } else {
             System.out.println("Plus de potions !");
