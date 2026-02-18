@@ -2,7 +2,7 @@ package Powers;
 
 import Core.Monster;
 
-public class FirePower implements Power {
+public class FirePower extends AbstractPower {
 
 
     @Override
@@ -12,12 +12,7 @@ public class FirePower implements Power {
 
     @Override
     public int getDamage() {
-        return 35;
-    }
-
-    @Override
-    public void executeAction(Monster target) {
-        target.takeDamage(getDamage());
+        return 25;
     }
 
     @Override
@@ -28,5 +23,10 @@ public class FirePower implements Power {
     @Override
     public PowersEnum getStrongAgainst() {
         return PowersEnum.ICE;
+    }
+
+    @Override
+    public PowersEnum getWeakAgainst() {
+        return PowersEnum.STONE;
     }
 }

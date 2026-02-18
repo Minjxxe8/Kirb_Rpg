@@ -30,7 +30,7 @@ public abstract class AbstractPower implements Power {
 
         } else {
             target.takeDamage(getDamage());
-            System.out.println("Tu infliges " + getDamage() + " dégâts à " + target.getName() + ". Il lui reste " + target.getHp() + " PV.");
+            System.out.println("Tu infliges " + getDamage() + " dégâts à " + target.getName() + ".");
         }
     }
 }
