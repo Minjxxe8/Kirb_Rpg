@@ -18,12 +18,14 @@ public class GameLoop {
     private int currentWorld;
     private final Kirby player;
     private boolean gameRunning;
+    private boolean powerAbsorbedThisWorld;
     private final Scanner scanner;
 
     public GameLoop() {
         this.currentWorld = 1;
         this.player = new Kirby();
         this.gameRunning = true;
+        this.powerAbsorbedThisWorld = false;
         this.scanner = new Scanner(System.in);
     }
 
@@ -86,6 +88,8 @@ public class GameLoop {
     }
 
     private void runWorld(int worldNumber) {
+        powerAbsorbedThisWorld = false;
+
         GameLore lore = new GameLore();
         printTitle("MONDE " + worldNumber);
         System.out.println(lore.getWorldLore(worldNumber));
@@ -144,7 +148,13 @@ public class GameLoop {
         String choice = scanner.nextLine().trim();
 
         if ("2".equals(choice)) {
-            player.swallowPower(enemy);
+            if (powerAbsorbedThisWorld) {
+                System.out.println(color(YELLOW, "Vous avez deja aspire un pouvoir dans ce monde."));
+                battle(enemy);
+            } else {
+                player.swallowPower(enemy);
+                powerAbsorbedThisWorld = true;
+            }
         } else {
             battle(enemy);
         }
