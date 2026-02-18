@@ -10,4 +10,5 @@ public interface Power {
 
     default PowersEnum getWeakAgainst() { return null; }
     default PowersEnum getStrongAgainst() { return null; }
+    default PowersEnum getBetterAgainst() { return null; }
 }
