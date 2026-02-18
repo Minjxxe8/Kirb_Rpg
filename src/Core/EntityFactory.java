@@ -8,7 +8,8 @@ class EntityFactory {
             return new Boss("Roi Dadidou");
         } else {
             String[] names = {"Waddle Dee", "Waddle Doo", "Meta Knight Minion"};
-            return new Monster(names[new Random().nextInt(names.length)]);
+            return null;
+            //return new Monster(names[new Random().nextInt(names.length)]);
         }
     }
 }

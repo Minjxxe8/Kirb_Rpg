@@ -1,9 +1,7 @@
 package World;
 
-import Core.Kirby;
-import Core.Monster;
-import Core.Boss;
-import Core.Entity;
+import Core.*;
+
 import java.util.Scanner;
 
 public class GameLoop {
@@ -54,7 +52,7 @@ public class GameLoop {
 
         for (int i = 0; i < monsterNames.length; i++) {
             System.out.println("\n=== Combat " + (i + 1) + " du Monde " + worldNumber + " ===");
-            Monster enemy = new Monster(monsterNames[i]);
+            Monster enemy = MonsterFactory.createRandomMonster();
             String abilityName = enemy.getAbility() != null ? enemy.getAbility().getName() : "Aucun";
             System.out.println("Un " + enemy.getName() + " apparait ! Pouvoir : " + abilityName);
 
