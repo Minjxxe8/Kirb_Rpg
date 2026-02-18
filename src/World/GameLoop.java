@@ -66,7 +66,6 @@ public class GameLoop {
             return;
         }
 
-        System.out.println("\nMonde " + worldNumber + " terminé !");
 
         System.out.println("\n=== COMBAT DE BOSS ===");
         Boss boss = new Boss("Boss du Monde " + worldNumber);
@@ -86,6 +85,7 @@ public class GameLoop {
             Shop shop = new Shop();
             shop.displayShop();
         }
+        System.out.println("\nMonde " + worldNumber + " terminé !");
 
         currentWorld++;
         waitForKey("Appuyez sur entrée pour continuer...");
@@ -111,8 +111,6 @@ public class GameLoop {
     private void battle(Entity enemy) {
         boolean isBoss = enemy instanceof Boss;
         String entityType = isBoss ? "BOSS" : enemy.getName().toUpperCase();
-
-        System.out.println("\n*** COMBAT CONTRE " + entityType + " ***");
 
         while (enemy.isAlive() && player.isAlive()) {
             System.out.println("\n[PV Kirby: " + player.getHp() + "] | [PV " + enemy.getName() + ": " + enemy.getHp() + "]");
