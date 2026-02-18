@@ -87,7 +87,7 @@ public class GameLoop {
 
         if (worldNumber < TOTAL_WORLDS) {
             Shop shop = new Shop();
-            shop.displayShop();
+            shop.displayShop(player);
         }
         System.out.println("\nMonde " + worldNumber + " terminé !");
 
