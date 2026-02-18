@@ -1,6 +1,8 @@
+import World.GameLoop;
 
-public class Main {
-    public static void main(String[] args) {
-        System.out.println("Initialisation du projet");
-    }
+void main() {
+   System.out.println("Initialisation du projet");
+   GameLoop gameLoop = new GameLoop();
+   gameLoop.start();
 }
+

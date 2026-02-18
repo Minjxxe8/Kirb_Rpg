@@ -18,8 +18,16 @@ abstract class Entity {
         System.out.println(attacker.name + " attaque " + target.name + " et inflige " + attacker.damage + " degats. Il reste " + target.hp + " PV a " + target.name + ".");
     }
 
+    public void basicAttack(Entity target) {
+        attack(this, target);
+    }
+
     public boolean isAlive() {
         return hp > 0;
+    }
+
+    public int getHp() {
+        return hp;
     }
 
     public String getName() {
@@ -28,10 +36,6 @@ abstract class Entity {
 
     public int takeDamage(int damage) {
         return this.hp -= damage;
-    }
-
-    public int getHp() {
-        return hp;
     }
 
     public void setHp(int hp) {

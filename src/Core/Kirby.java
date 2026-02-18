@@ -2,14 +2,28 @@ package Core;
 
 import Powers.Power;
 
-class Kirby extends Entity {
+public class Kirby extends Entity {
     private static final int MAX_HP = 100;
     private final Inventory inventory;
     private Power currentPower;
 
     public Kirby() {
         super("Kirby", MAX_HP, 20);
-        this.inventory = new Inventory(0, 0);
+        this.inventory = new Inventory(3, 0);
+    }
+
+    public void setPower(Power power) {
+        this.currentPower = power;
+    }
+
+    public void useSpecialPower(Entity target) {
+        if (currentPower == null) {
+            System.out.println("Aucun pouvoir special equipe.");
+            return;
+        }
+
+        currentPower.executeAction();
+        attack(this, target);
     }
 
     public void heal() {
