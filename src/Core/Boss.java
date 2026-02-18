@@ -14,7 +14,7 @@ public class Boss extends Entity {
     }
 
     public Boss(String name) {
-        super(name, 50, 30);
+        super(name, 200, 30);
         this.strategy = new HeavyAttack();
     }
 
