@@ -17,7 +17,7 @@ public class FirePower implements Power {
     }
 
     @Override
-    public void executeAction(Monster target) {
+    public void executeAction() {
         int damage = getDamage();
 
         if (target.getPower() == PowersEnum.ICE){
