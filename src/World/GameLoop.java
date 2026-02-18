@@ -2,11 +2,8 @@ package World;
 
 import Core.Kirby;
 import Core.Monster;
-import Core.MonsterFactory;
 import Core.Boss;
 import Core.Entity;
-import Powers.Power;
-
 import java.util.Scanner;
 
 public class GameLoop {
@@ -53,19 +50,26 @@ public class GameLoop {
         System.out.println("\n--- MONDE " + worldNumber + " ---");
         player.showInventory();
 
-        System.out.println("\n=== Combat du Monde " + worldNumber + " ===");
-        Monster enemy = MonsterFactory.createRandomMonster();
-        String abilityName = enemy.getAbility() != null ? enemy.getAbility().getName() : "Aucun";
-        System.out.println("Un " + enemy.getName() + " apparait ! Pouvoir : " + abilityName);
+        String[] monsterNames = {"Waddle Dee", "Waddle Doo", "Bronto Burt"};
 
-        handleEncounter(enemy);
+        for (int i = 0; i < monsterNames.length; i++) {
+            System.out.println("\n=== Combat " + (i + 1) + " du Monde " + worldNumber + " ===");
+            Monster enemy = new Monster(monsterNames[i]);
+            String abilityName = enemy.getAbility() != null ? enemy.getAbility().getName() : "Aucun";
+            System.out.println("Un " + enemy.getName() + " apparait ! Pouvoir : " + abilityName);
 
-        if (!player.isAlive()) {
-            gameRunning = false;
-            System.out.println("GAME OVER - Monde atteint : " + worldNumber);
-            return;
+            handleEncounter(enemy);
+
+            if (!player.isAlive()) {
+                gameRunning = false;
+                System.out.println("GAME OVER - Monde atteint : " + worldNumber);
+                return;
+            }
+
+            if (i < monsterNames.length - 1) {
+                waitForKey("\nAppuyez sur entrée pour continuer l'exploration...");
+            }
         }
-
 
         System.out.println("\n=== COMBAT DE BOSS ===");
         Boss boss = new Boss("Boss du Monde " + worldNumber);
