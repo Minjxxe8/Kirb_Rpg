@@ -43,7 +43,6 @@ public class Shop {
             System.out.printf("%d. %s - %d pièces d'or (%s)\n",
                     i + 1, item.getName(), item.getPrice(), item.getType());
         }
-        System.out.println("0. Quitter la boutique");
         System.out.println("================\n");
 
         boolean shopping = true;
