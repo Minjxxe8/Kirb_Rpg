@@ -1,10 +1,12 @@
 package World;
 
 import Core.Kirby;
+import Powers.Power;
 import Powers.PowerFactory;
 import Powers.PowersEnum;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -20,6 +22,16 @@ public class Shop {
 
     private void initializeItems() {
         items.add(new Item("Potion de soin", 20, ItemType.HEAL, 40));
+
+        PowersEnum[] powers = PowersEnum.values();
+        List<PowersEnum> shuffled = new ArrayList<>(List.of(powers));
+        Collections.shuffle(shuffled);
+
+        for (int i = 0; i < 2; i++) {
+            PowersEnum power = shuffled.get(i);
+            Power p = PowerFactory.from(power);
+            items.add(new Item(p.getName(), 50, ItemType.POWER, power.ordinal()));
+        }
     }
 
     public void displayShop(Kirby kirby) {
@@ -68,8 +80,7 @@ public class Shop {
                 System.out.println("✓ Potion achetée ! (+1 potion dans l'inventaire)");
             } else if (item.getType() == ItemType.POWER) {
                 PowersEnum powerType = PowersEnum.values()[item.getValue()];
-                player.setPower(PowerFactory.from(powerType));
-                System.out.println("✓ Pouvoir " + item.getName() + " acheté et équipé !");
+                player.buyPower(powerType);
             }
             System.out.println("Or restant : " + player.getInventory().getGold());
         }

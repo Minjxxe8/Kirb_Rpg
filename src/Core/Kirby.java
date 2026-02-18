@@ -1,5 +1,6 @@
 package Core;
 
+import Powers.EnhancedPower;
 import Powers.Power;
 import Powers.PowerFactory;
 import Powers.PowersEnum;
@@ -49,6 +50,18 @@ public class Kirby extends Entity {
             System.out.println("Ce monstre n'a pas de pouvoir à gober.");
     }
 
+    public void buyPower(PowersEnum bought) {
+        Power newPower = PowerFactory.from(bought);
+
+        if (currentPower != null && currentPower.getType() == bought) {
+            currentPower = new EnhancedPower(currentPower);
+            System.out.println("Pouvoir renforcé ! " + currentPower.getName()
+                    + " | Dégâts : " + currentPower.getDamage());
+        } else {
+            currentPower = newPower;
+            System.out.println("Nouveau pouvoir obtenu : " + currentPower.getName());
+        }
+    }
 
     public void addGold(int amount) {
         inventory.addGold(amount);
