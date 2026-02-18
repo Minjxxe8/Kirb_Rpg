@@ -1,32 +1,33 @@
 package Powers;
 
-import Core.Monster;
-
-public class IcePower extends AbstractPower {
-
-
+public class StonePower extends AbstractPower{
     @Override
     public String getName() {
-        return "Ice";
+        return "Stone";
     }
 
     @Override
     public int getDamage() {
-        return 20;
+        return 26;
     }
 
     @Override
     public PowersEnum getType() {
-        return PowersEnum.ICE;
+        return PowersEnum.STONE;
     }
 
     @Override
     public PowersEnum getWeakAgainst() {
-        return PowersEnum.FIRE;
+        return PowersEnum.BOMB;
     }
 
     @Override
     public PowersEnum getBetterAgainst() {
-        return PowersEnum.STONE;
+        return PowersEnum.SPEAR;
+    }
+
+    @Override
+    public PowersEnum getStrongAgainst() {
+        return PowersEnum.FIRE;
     }
 }
