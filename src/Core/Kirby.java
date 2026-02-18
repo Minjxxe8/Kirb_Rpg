@@ -47,6 +47,7 @@ class Kirby extends Entity {
         System.out.println("Inventaire -> Potions: " + inventory.getPotionCount() + " | Or: " + inventory.getGold());
     }
 
+    /*
     public void displayHealthBar() {
         int barLength = 20;
         double healthRatio = (double) hp / maxHp;
@@ -67,4 +68,5 @@ class Kirby extends Entity {
             System.out.println("GAME OVER : Kirby est K.O. !");
         }
     }
+     */
 }
