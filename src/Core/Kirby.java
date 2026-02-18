@@ -1,6 +1,8 @@
 package Core;
 
 import Powers.Power;
+import Powers.PowerFactory;
+import Powers.PowersEnum;
 
 public class Kirby extends Entity {
     private static final int MAX_HP = 100;
@@ -12,18 +14,22 @@ public class Kirby extends Entity {
         this.inventory = new Inventory(3, 0);
     }
 
+    @Override
+    public PowersEnum getPower() {
+        return currentPower != null ? currentPower.getType() : null;
+    }
+
     public void setPower(Power power) {
         this.currentPower = power;
     }
 
     public void useSpecialPower(Entity target) {
-        if (currentPower == null) {
-            System.out.println("Aucun pouvoir special equipe.");
-            return;
+        if (currentPower != null)
+            currentPower.executeAction(target);
+        else {
+            System.out.println(this.getName() + " n'a pas de pouvoir actif ! " + this.getName() + " utilise alors une attque classique");
+            basicAttack(target);
         }
-
-        currentPower.executeAction();
-        attack(this, target);
     }
 
     public void heal() {
@@ -34,6 +40,15 @@ public class Kirby extends Entity {
             System.out.println("Plus de potions !");
         }
     }
+
+    public void swallowPower(Monster monster) {
+        this.currentPower = PowerFactory.from(monster.getPower());
+        if (this.currentPower != null)
+            System.out.println("Kirby avale le pouvoir : " + currentPower.getName() + " !");
+        else
+            System.out.println("Ce monstre n'a pas de pouvoir à gober.");
+    }
+
 
     public void addGold(int amount) {
         inventory.addGold(amount);

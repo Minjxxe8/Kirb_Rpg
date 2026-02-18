@@ -1,6 +1,8 @@
 package Core;
 
-abstract class Entity {
+import Powers.PowersEnum;
+
+public abstract class Entity {
     protected String name;
     protected int hp;
     protected int maxHp;
@@ -32,6 +34,10 @@ abstract class Entity {
 
     public String getName() {
         return name;
+    }
+
+    public PowersEnum getPower() {
+        return null;
     }
 
     public int takeDamage(int damage) {

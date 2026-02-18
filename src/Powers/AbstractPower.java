@@ -1,13 +1,18 @@
 package Powers;
 
 import Core.Monster;
+import Core.Entity;
+
 
 public abstract class AbstractPower implements Power {
 
     @Override
-    public void executeAction(Monster target) {
+    public void executeAction(Entity target) {
 
-        if (target.getPower() == getStrongAgainst()) {
+        PowersEnum targetPower = (target instanceof Monster m) ? m.getPower() : null;
+
+
+        if (targetPower == getStrongAgainst()) {
             System.out.println("Super efficace ! " + target.getName() + " est vaincu d'un coup !");
             target.setHp(0);
 

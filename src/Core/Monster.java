@@ -10,9 +10,8 @@ public class Monster extends Entity {
         super(name, 80, 10);
     }
 
-    public PowersEnum getPower() {
-        return PowersEnum.FIRE;
-    }
+    @Override
+    public PowersEnum getPower() { return powersEnum; }
 
     public Power getAbility() {
         return this.currentPower;

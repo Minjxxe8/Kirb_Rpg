@@ -80,12 +80,7 @@ public class GameLoop {
         String choice = scanner.nextLine();
 
         if ("2".equals(choice)) {
-            if (enemy.getAbility() != null) {
-                player.setPower(enemy.getAbility());
-                System.out.println("Kirby a aspiré le " + enemy.getName() + " !");
-            } else {
-                System.out.println("Ce monstre n'a aucun pouvoir à aspirer.");
-            }
+            player.swallowPower(enemy);
         } else {
             battle(enemy);
         }
