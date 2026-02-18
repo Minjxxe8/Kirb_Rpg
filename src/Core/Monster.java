@@ -1,14 +1,14 @@
 package Core;
-import Powers.Power;
+import Powers.PowersEnum;
 
 public class Monster extends Entity {
-    private Power ability;
+    private PowersEnum powersEnum;
 
     public Monster(String name) {
         super(name, 80, 10);
     }
 
-    public Power getAbility() {
-        return ability;
+    public PowersEnum getPower() {
+        return PowersEnum.FIRE;
     }
 }
