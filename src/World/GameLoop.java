@@ -3,6 +3,8 @@ package World;
 import Core.Kirby;
 import Core.Monster;
 import Core.MonsterFactory;
+import Core.Boss;
+import Core.Entity;
 import Powers.Power;
 
 import java.util.Scanner;
@@ -66,6 +68,20 @@ public class GameLoop {
 
         System.out.println("\nMonde " + worldNumber + " terminé !");
 
+        System.out.println("\n=== COMBAT DE BOSS ===");
+        Boss boss = new Boss("Boss du Monde " + worldNumber);
+        System.out.println("Un " + boss.getName() + " apparait avec " + boss.getHp() + " PV !");
+
+        battle(boss);
+
+        if (!player.isAlive()) {
+            gameRunning = false;
+            System.out.println("GAME OVER - Vaincu par le boss du monde " + worldNumber);
+            return;
+        }
+
+        System.out.println("\n*** Boss vaincu ! ***");
+
         if (worldNumber < TOTAL_WORLDS) {
             Shop shop = new Shop();
             shop.displayShop();
@@ -92,11 +108,14 @@ public class GameLoop {
         }
     }
 
-    private void battle(Monster enemy) {
-        System.out.println("\n*** COMBAT CONTRE " + enemy.getName().toUpperCase() + " ***");
+    private void battle(Entity enemy) {
+        boolean isBoss = enemy instanceof Boss;
+        String entityType = isBoss ? "BOSS" : enemy.getName().toUpperCase();
+
+        System.out.println("\n*** COMBAT CONTRE " + entityType + " ***");
 
         while (enemy.isAlive() && player.isAlive()) {
-            System.out.println("\n[PV Kirby: " + player.getHp() + "] | [PV Ennemi: " + enemy.getHp() + "]");
+            System.out.println("\n[PV Kirby: " + player.getHp() + "] | [PV " + enemy.getName() + ": " + enemy.getHp() + "]");
             System.out.println("(1) Coup de pied | (2) Pouvoir Spécial | (3) Potion");
             String action = scanner.nextLine();
 
@@ -108,12 +127,17 @@ public class GameLoop {
             }
 
             if (!enemy.isAlive()) {
-                System.out.println("✓ Victoire ! L'ennemi est vaincu.");
-                player.addGold(10);
+                String victoryMessage = isBoss ? "✓ Victoire épique ! Le boss est vaincu !" : "✓ Victoire ! L'ennemi est vaincu.";
+                System.out.println(victoryMessage);
+                player.addGold(isBoss ? 50 : 10);
                 break;
             }
 
-            enemy.basicAttack(player);
+            int damage = (enemy instanceof Boss) ? ((Boss) enemy).attack() : enemy.getDamage();
+            player.takeDamage(damage);
+            System.out.println(enemy.getName() + " attaque et inflige " + damage + " dégâts !");
         }
     }
+
+
 }

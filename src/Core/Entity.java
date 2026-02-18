@@ -1,6 +1,6 @@
 package Core;
 
-abstract class Entity {
+public abstract class Entity {
     protected String name;
     protected int hp;
     protected int maxHp;
@@ -42,5 +42,7 @@ abstract class Entity {
         this.hp = hp;
     }
 
-
+    public int getDamage() {
+        return damage;
+    }
 }
