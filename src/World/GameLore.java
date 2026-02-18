@@ -12,7 +12,7 @@ public class GameLore {
                 Dans un monde coloré de Dream Land, une menace obscure
                 s'est emparée des 5 royaumes magiques...
                 
-                Kirby, notre héros rose et courageux, doit voyager à
+                Kirby, notre héros, doit voyager à
                 travers ces mondes pour restaurer la paix et vaincre
                 les forces du mal qui menacent son univers !
                 
