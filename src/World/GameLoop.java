@@ -9,7 +9,6 @@ import java.util.Scanner;
 
 public class GameLoop {
     private static final int TOTAL_WORLDS = 5;
-    private static final int MOBS_PER_WORLD = 5;
 
     private int currentWorld;
     private Kirby player;
@@ -23,6 +22,26 @@ public class GameLoop {
         this.scanner = new Scanner(System.in);
     }
 
+    private void waitForKey(String message) {
+        System.out.println(message);
+        scanner.nextLine();
+    }
+
+    public void start() {
+        System.out.println("\n=== BIENVENUE DANS KIRBY ADVENTURE ===\n");
+
+        while (gameRunning && currentWorld <= TOTAL_WORLDS) {
+            runWorld(currentWorld);
+        }
+
+        if (currentWorld > TOTAL_WORLDS && player.isAlive()) {
+            System.out.println("\n*** FÉLICITATIONS ! Vous avez terminé tous les mondes ! ***");
+        }
+
+        scanner.close();
+    }
+
+
     private void runWorld(int worldNumber) {
         GameLore lore = new GameLore();
         System.out.println(lore.getWorldLore(worldNumber));
@@ -31,19 +50,17 @@ public class GameLoop {
         System.out.println("\n--- MONDE " + worldNumber + " ---");
         player.showInventory();
 
-        for (int i = 1; i <= MOBS_PER_WORLD && player.isAlive(); i++) {
-            System.out.println("\n=== Combat " + i + "/" + MOBS_PER_WORLD + " ===");
-            Monster enemy = MonsterFactory.createRandomMonster();
-            String abilityName = enemy.getAbility() != null ? enemy.getAbility().getName() : "Aucun";
-            System.out.println("Un " + enemy.getName() + " apparait ! Pouvoir : " + abilityName);
+        System.out.println("\n=== Combat du Monde " + worldNumber + " ===");
+        Monster enemy = MonsterFactory.createRandomMonster();
+        String abilityName = enemy.getAbility() != null ? enemy.getAbility().getName() : "Aucun";
+        System.out.println("Un " + enemy.getName() + " apparait ! Pouvoir : " + abilityName);
 
-            handleEncounter(enemy);
+        handleEncounter(enemy);
 
-            if (!player.isAlive()) {
-                gameRunning = false;
-                System.out.println("GAME OVER - Monde atteint : " + worldNumber);
-                return;
-            }
+        if (!player.isAlive()) {
+            gameRunning = false;
+            System.out.println("GAME OVER - Monde atteint : " + worldNumber);
+            return;
         }
 
         System.out.println("\nMonde " + worldNumber + " terminé !");
@@ -56,6 +73,7 @@ public class GameLoop {
         currentWorld++;
         waitForKey("Appuyez sur entrée pour continuer...");
     }
+
 
     private void handleEncounter(Monster enemy) {
         System.out.println("(1) Attaquer | (2) Aspirer");

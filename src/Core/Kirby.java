@@ -2,7 +2,7 @@ package Core;
 
 import Powers.Power;
 
-class Kirby extends Entity {
+public class Kirby extends Entity {
     private static final int MAX_HP = 100;
     private final Inventory inventory;
     private Power currentPower;
